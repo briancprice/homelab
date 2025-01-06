@@ -14,6 +14,7 @@
       modules = [
         ./configuration.nix
         ./settings/localization.nix
+        ./users
          home-manager.nixosModules.home-manager {
           home-manager.useUserPackages = true;
           home-manager.useGlobalPkgs = true;
