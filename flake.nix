@@ -14,12 +14,26 @@
       modules = [
         ({config, ... }: { 
           config.networking.hostName = "nixos-dev"; 
+          system.stateVersion = "24.11";
         })
-        ./configuration.nix
+
+        # NixOS settings
+        ./settings/nixos.nix
+
+        # System settings
         ./hardware/qemu-guest.nix
-        ./desktops/cinnamon.nix
+        ./bootloaders/efi-default.nix
         ./networks/wired.nix
         ./settings/localization.nix
+        
+        # Services
+        ./services/openssh-secure.nix
+        
+        # Desktops/apps
+        ./desktops/cinnamon.nix
+        ./package-sets/system-minimal.nix
+
+        # Users
         ./users
          home-manager.nixosModules.home-manager {
           home-manager.useUserPackages = true;
