@@ -2,19 +2,39 @@
   description = "NixOS development machine configuration";
 
   inputs = {
+
+    # nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+
+    # My custom bitwarden installation
+    bitwarden.url = "./packages/bitwarden";
+    bitwarden.inputs.nixpkgs.follows = "nixpkgs";
+
+    # Home manager    
     home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-   };
-  outputs = { self, nixpkgs, home-manager, ...}@inputs:
+   
+  };
+  outputs = { self, nixpkgs, home-manager, bitwarden, ...}@inputs:
   let
   in {
     nixosConfigurations.nixos-dev = nixpkgs.lib.nixosSystem {
       system = "x86_64_linux";
+
+      specialArgs = { inherit inputs; };
       modules = [
-        ({config, ... }: { 
+
+        # Inline module to streamline config
+        ({config, pkgs, inputs, ... }: { 
           config.networking.hostName = "nixos-dev"; 
           config.system.stateVersion = "24.11";
+
+          # Include custom packages
+          config.programs.appimage.enable = true;
+          config.programs.appimage.binfmt = true;
+          config.environment.systemPackages = with pkgs; [
+            inputs.bitwarden.packages."${pkgs.system}".bitwarden
+          ];
         })
 
         # NixOS settings
