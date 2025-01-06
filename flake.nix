@@ -14,7 +14,7 @@
       modules = [
         ({config, ... }: { 
           config.networking.hostName = "nixos-dev"; 
-          system.stateVersion = "24.11";
+          config.system.stateVersion = "24.11";
         })
 
         # NixOS settings
