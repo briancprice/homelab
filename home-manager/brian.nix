@@ -30,7 +30,6 @@
     ];
 
     extraConfig = ''
-                  -- Add config here
                   '';
     };
 
