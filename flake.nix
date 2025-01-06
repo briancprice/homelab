@@ -16,6 +16,7 @@
           config.networking.hostName = "nixos-dev"; 
         })
         ./configuration.nix
+        ./hardware/qemu-guest.nix
         ./desktops/cinnamon.nix
         ./networks/wired.nix
         ./settings/localization.nix
