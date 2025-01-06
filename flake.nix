@@ -12,7 +12,11 @@
     nixosConfigurations.nixos-dev = nixpkgs.lib.nixosSystem {
       system = "x86_64_linux";
       modules = [
+        ({config, ... }: { 
+          config.networking.hostName = "nixos-dev"; 
+        })
         ./configuration.nix
+        ./networks/wired.nix
         ./settings/localization.nix
         ./users
          home-manager.nixosModules.home-manager {

@@ -11,21 +11,12 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nixos-dev"; # Define your hostname.
-
-  # Enable networking
-  networking.networkmanager.enable = true;
-
-  
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
   # Enable the Cinnamon Desktop Environment.
   services.xserver.displayManager.lightdm.enable = true;
   services.xserver.desktopManager.cinnamon.enable = true;
-
-  
-
 
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
