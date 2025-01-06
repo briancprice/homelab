@@ -6,6 +6,10 @@
   home.homeDirectory = "/home/brian";
   home.stateVersion = "24.11";
 
+  imports = [
+    ./brian-de.nix
+  ];
+
   home.sessionVariables = {
     SUDO_EDITOR = "vim";
     EDITOR = "vim";
