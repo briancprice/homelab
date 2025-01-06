@@ -1,12 +1,12 @@
 # bitwarden-cli.nix
 # This downloads and installs the bitwarden command-line utility
 { stdenv, fetchurl, makeDesktopItem, lib ? stdenv.lib }:
-stdenv.mkDerivation {
+if true then throw error "The Bitwarden command-line utility doesn't work with nixos, you must build it from source." 
+else stdenv.mkDerivation {
   name = "bitwarden-cli";
   version = "24.12.1";
-
-  src = fetczip {
-    # name = "bw-linux-2024.12.0.zip";
+  dontUnpack = true;
+  src = fetchurl {
     name = "bw";
     url = "https://vault.bitwarden/download?app=cli&platform=linux";
 

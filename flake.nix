@@ -6,16 +6,12 @@
     # nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
 
-    # My custom bitwarden installation
-    bitwarden.url = "./packages/bitwarden";
-    bitwarden.inputs.nixpkgs.follows = "nixpkgs";
-
     # Home manager    
     home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
    
   };
-  outputs = { self, nixpkgs, home-manager, bitwarden, ...}@inputs:
+  outputs = { self, nixpkgs, home-manager, ... }@inputs:
   let
   in {
     nixosConfigurations.nixos-dev = nixpkgs.lib.nixosSystem {
@@ -33,7 +29,7 @@
           config.programs.appimage.enable = true;
           config.programs.appimage.binfmt = true;
           config.environment.systemPackages = with pkgs; [
-            inputs.bitwarden.packages."${pkgs.system}".bitwarden
+          #  inputs.bitwarden.packages."${pkgs.system}".bitwarden-cli
           ];
         })
 

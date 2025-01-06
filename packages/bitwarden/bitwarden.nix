@@ -1,7 +1,8 @@
 # bitwarden-app.nix
 # This downloads and installs the bitwarden desktop application
 { stdenv, fetchurl, makeDesktopItem, lib ? stdenv.lib, appImageName ? "Bitwarden-2024.12.1-x86_64.AppIimage" }:
-stdenv.mkDerivation {
+if true then builtins.throw "Error: NixOS won't support BitWarden run as an AppImage do not include Bitwarden-AppImage." else stdenv.mkDerivation {
+
   name = "Bitwarden-AppIimage";
   version = "24.12.1";
   dontUnpack = true;
@@ -24,5 +25,6 @@ stdenv.mkDerivation {
     icon = "bitwarden";
     type = "Application";
     categories = ["Utility"];
+ 
     };
 }
