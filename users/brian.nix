@@ -10,5 +10,5 @@
     packages = with pkgs; [
       tldr
     ];
-  };a
+  };
 }

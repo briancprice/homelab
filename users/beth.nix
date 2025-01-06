@@ -3,13 +3,13 @@
 { config, pkgs, ... }:
 {
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users = {
+  users.users.beth = {
     isNormalUser = true;
     description = "beth";
     extraGroups = [ "networkmanager" ];
     packages = with pkgs; [
       tldr
     ];
-  };a
+  };
 }
 
