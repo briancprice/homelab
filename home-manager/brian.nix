@@ -1,6 +1,7 @@
+
+# "Brian's default home-manager configuration";
 { config, pkgs, ... }:
 {
-  meta.description = "Brian's default home-manager configuration"
   home.username = "brian";
   home.homeDirectory = "/home/brian";
   home.stateVersion = "24.11";
