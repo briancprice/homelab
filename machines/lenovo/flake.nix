@@ -21,7 +21,7 @@
 
         imports = [
           disko.nixosModules.disko
-          ./lenovo-disko.nix
+          ./disko.nix
           ../common/boot-efi.nix
           ../qemu-guest/hardware-configuration.nix
         ];
