@@ -1,6 +1,6 @@
 { device, ... }:
 let
-  espPartition = import ./disko-partition-ESP.nix { device = device; };
+  espPartition = (import ./disko-partition-ESP.nix { device = device; });
 in 
 {
   device = device;
