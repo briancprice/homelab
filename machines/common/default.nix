@@ -2,24 +2,13 @@
 # Provides a simple nix-os installation intended for bootstrapping the real install
 { config, lib, pkgs, ... }:
 let
-  oldPostInstallScript = boot.installer.postInstallation; 
+   
 in
 {
-  imorts = 
-  [
-    ./boot-efi.nix
-    ./common.nix
-  ];
-
   # Set up preliminary ssh
   services.openssh.enable = true;
-  services.openssh.settings.permitRootLogin = "prohibit-password";
-  users.users.root.openssh.authorizedKeys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKQM3PinzEcWHWb7JZ+5iJMttHhlbIizZ4T9bcXvCD3f" ];
-  boot.installer.postInstallation = 
-  '' 
-    ${oldPostInstallScript}\n
-    echo "WARNING: Root login is enabled for SSH"
-  '';
+  services.openssh.settings.PermitRootLogin = "prohibit-password";
+  users.users.root.openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKQM3PinzEcWHWb7JZ+5iJMttHhlbIizZ4T9bcXvCD3f" ];
 
   # Default Packages
   environment.systemPackages = with pkgs; [

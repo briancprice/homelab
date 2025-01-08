@@ -1,25 +1,23 @@
-{ config, device ... }:
+{ config, device, ... }:
 let
-  espPartition = import ./disko-partition-ESP.nix {};
+  espPartition = import ./disko-partition-ESP.nix;
 in 
 {
-  {
-    device = device;
-    type = "disk";
-    content = {
-      type = "gpt";
-        partitions = {
-          ESP = espPartition;
-          root = {
-            SIZE = "95%";
-            content = {
-              type = "filesystem";
-              format = "ext4";
-              mountpoint = "/";
-              mountOptions = [ "noatime, norelatime" ];
-            };
+  device = device;
+  type = "disk";
+  content = {
+    type = "gpt";
+      partitions = {
+        ESP = espPartition;
+        root = {
+          size = "95%";
+          content = {
+            type = "filesystem";
+            format = "ext4";
+            mountpoint = "/";
+            mountOptions = [ "noatime, norelatime" ];
           };
         };
       };
-  };
+    };
 }  

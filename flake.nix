@@ -24,13 +24,6 @@
         ({config, pkgs, inputs, ... }: { 
           config.networking.hostName = "nixos-dev"; 
           config.system.stateVersion = "24.11";
-
-          # Include custom packages
-          config.programs.appimage.enable = true;
-          config.programs.appimage.binfmt = true;
-          config.environment.systemPackages = with pkgs; [
-          #  inputs.bitwarden.packages."${pkgs.system}".bitwarden-cli
-          ];
         })
 
         # NixOS settings
@@ -38,8 +31,13 @@
 
         # System settings
         ./hardware/qemu-guest.nix
-        ./bootloaders/efi-default.nix
+        ./machines/common/boot-efi.nix
+
+        # Network Settings
         ./networks/wired.nix
+        ./networks/network-host-id.nix
+
+        # Misc Settings
         ./settings/localization.nix
         
         # Services

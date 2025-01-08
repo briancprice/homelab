@@ -1,14 +1,12 @@
 # disko-partition-ESP.nix
-{ config, partitionSize ... }:
+{ config, ... }:
 {
-  {
-    size = "500M";
-    type = "EF00";
-    content = {
-      type = "filesystem";
-      format = "vfat";
-      mountpoint = "/boot";
-      mountOptions = ["unmask=0077"];
-    };
+  size = "500M";
+  type = "EF00";
+  content = {
+    type = "filesystem";
+    format = "vfat";
+    mountpoint = "/boot";
+    mountOptions = ["unmask=0077"];
   };
 }
