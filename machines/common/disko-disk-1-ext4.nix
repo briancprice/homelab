@@ -1,6 +1,6 @@
-{ config, device, ... }:
+{ device, ... }:
 let
-  espPartition = import ./disko-partition-ESP.nix { inherit config; device = "vda"; };
+  espPartition = import ./disko-partition-ESP.nix { device = device; };
 in 
 {
   device = device;
@@ -10,7 +10,7 @@ in
       partitions = {
         ESP = espPartition;
         root = {
-          size = "95%";
+          size = "100%";
           content = {
             type = "filesystem";
             format = "ext4";

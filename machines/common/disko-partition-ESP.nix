@@ -1,5 +1,5 @@
 # disko-partition-ESP.nix
-{ config, ... }:
+{ ... }:
 {
   size = "500M";
   type = "EF00";
