@@ -1,6 +1,6 @@
 { config, device, ... }:
 let
-  espPartition = import ./disko-partition-ESP.nix;
+  espPartition = import ./disko-partition-ESP.nix { inherit config; device = "vda"; };
 in 
 {
   device = device;
