@@ -15,20 +15,13 @@
   let
   in {
 
-    # Disko configuration for my lenovo laptop
-    nixosModules.lenovo-disko = { config, ... }: {
-      imports = [ inputs.disko.nixosModules.disko ];
-      config.disko.devices = {
-        disk.main = import ../common/disko-disk-1-ext4.nix;
-      };
-    };
-
     # Common configuration settings for my lenovo laptop
     nixosModules.lenovo-config = { config, ... }: {
         config.networking.hostName = "lenovo";
 
         imports = [
-          self.nixosModules.lenovo-disko
+          disko.nixosModules.disko
+          ./lenovo-disko.nix
           ../common/boot-efi.nix
           ../qemu-guest/hardware-configuration.nix
         ];
