@@ -10,8 +10,6 @@
       {
         type = "gpt";
         partitions = {
-
-          # The Boot Partition
           ESP = 
           {
             size = "500M";
@@ -24,18 +22,6 @@
               mountOptions = ["umask=0077"];
             };
           }
-
-          # The Root partition "/"
-          /*
-          root =
-          {
-            label = "root";
-            type = "tmpfs";
-            options = "size=4G";
-            mountpoint = "/";
-          };
-          */
-          
           root = 
           {
             size = "100%";
