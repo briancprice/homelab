@@ -15,7 +15,7 @@ in
             type = "filesystem";
             format = "ext4";
             mountpoint = "/";
-            mountOptions = [ "noatime, norelatime" ];
+            mountOptions = [ "noatime" "norelatime" ];
           };
         };
       };
