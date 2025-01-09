@@ -4,21 +4,29 @@
 # - disko
 { config, inputs, ... }:
 {
+  # The host name
+  # Note, the host name is also used to calculate the machine name
   config.networking.hostName = "lenovo";  
-    config._module.args.zfs_arc_max = 4;
-    imports = [
-      # Use disko to mount the disks
-      inputs.disko.nixosModules.disko
-      ./disko.nix
 
-      # Use the default boot settings
-      ../common/boot-efi.nix
+  # ZFS settings...
+  config.services.zfs.trim.enable = true;
+  # config.boot.kernelParams = ["zfs.zfs_arc_max=${builtins.toString(1024 * 1024 * 1024 * 4)}"];
+  # The following line is required for vms
+  config.boot.zfs.devNodes = "/dev/disk/by-path";
 
-      # Default zfs settings
-      ../common/zfs.nix
+  imports = [
+    # Use disko to mount the disks
+    inputs.disko.nixosModules.disko
+    ./disko.nix
 
-      # Hardware configuration for lenovo laptop
-      ../qemu-guest/hardware-configuration.nix
-      ];
+    # Use the default boot settings
+    ../common/boot-efi.nix
+
+    # Default zfs settings
+    ../common/zfs.nix
+
+    # Hardware configuration for lenovo laptop
+    ../qemu-guest/hardware-configuration.nix
+    ];
 }
 
