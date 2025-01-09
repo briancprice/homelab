@@ -3,6 +3,5 @@
 { config, ... }:
 {
   users.solitaryByDefault = true;
-  users.mutableUsers = false;
   
 }

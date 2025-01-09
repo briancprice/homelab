@@ -22,6 +22,15 @@
             };
           };
 
+          # The Swap Partition
+          swap = {
+            size = "32G";
+            content = {
+              type = "swap";
+              resumeDevice = true;
+            };
+          };
+
           # The Data Partition 
           zdevone = {
             size = "100%";
@@ -37,7 +46,7 @@
     };
 
     # Ephemeral root partition
-    memdisk."/" = {
+    nodev."/" = {
       fsType = "tmpfs";
       mountOptions = [ "noatime" "norelatime" "size=25%" "mode=755" ];
     };
@@ -50,40 +59,53 @@
       # options are lowercase -o settings
       options = {
         ashift = "12";
-        autotrim = "on"
+        autotrim = "on";
       };
 
       # rootFsOptions are uppercase -O settings
       rootFsOptions = {
-        acltpe = "posixacl";
+        acltype = "posixacl";
         atime = "off";
         relatime = "off";
         compression = "lz4";
         dnodesize = "auto";
         mountpoint = "none";
-        recordsize = "128KB";
+        recordsize = "128K";
         xattr = "sa";
+        "com.sun:auto-snapshot" = "false";
       };
 
       # Initialize zfs datases
-      zpool.premium.datasets = {
+      datasets = {
+
+        # Reserve space at the beginning of the dataset
         reserved = {
           type = "zfs_fs";
-          options.mountpoint = "none";
           options.refreservation = "10G";
+          options.mountpoint = "none";
         };
-
-        persist = {
-          type = "zfs_fs";
-          mountpoint = "/"
-        }
 
         # The NixOS persistant settings will be here
         nix = {
           type = "zfs_fs";
           mountpoint = "/nix";
-        }
-      }
+          options.mountpoint = "legacy";
+        };
+
+        # The persistent store
+        persistence = {
+          type = "zfs_fs";
+          mountpoint = "/nix/persistent";
+          options.mountpoint = "legacy";
+        };
+
+        # Location for games
+        games = {
+          type = "zfs_fs";
+          mountpoint = "/nix/persistent-games";
+          options.mountpoint = "legacy";
+        };
+      };
 
     };
   };

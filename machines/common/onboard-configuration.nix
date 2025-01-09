@@ -5,6 +5,13 @@ let
    
 in
 {
+  # Warning: if impermenance is setup, make sure to preserve the machine-id
+  imports = [
+    # Set up the network host-id
+    ../../networks/network-host-id.nix
+  ];
+
+
   # Set up preliminary ssh
   services.openssh.enable = true;
   services.openssh.settings.PermitRootLogin = "prohibit-password";

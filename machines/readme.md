@@ -59,7 +59,7 @@ run github:nix-community/disko -- \
 # 4.  Install the simple onboarding configuration for the        machine...
 
 sudo nixos-install --flake ./machines#lenovo-bootstrap \
---no-root-passwd
+--no-root-password
 
 # 5.  Reboot the machine and verify success.  The bootstrap profiles only have one user by default, this is root, you'll need to ssh into the machine using the key
 
@@ -86,5 +86,24 @@ run github:nix-community/disko/latest#disko-install -- \
 # --write-efi-boot-entries is needed for non-removable drives
 # --disk main /dev/vda replaces the main disk entry in the disko.nix
 
----
+```
+
+## Resources
+
+### ZFS
+- [NixOS - Wiki - ZFS](https://nixos.wiki/wiki/ZFS)
+- [ZFS - Tuning Cheat sheet](https://jrs-s.net/2018/08/17/zfs-tuning-cheat-sheet)
+
+### Disko
+- [NixOS - Wiki - Disko](https://nixos.wiki/wiki/disko)
+- [Github:Disko](https://github.com/nix-community/disko)
+- TIP: Search GitHub using path:disko.nix e.g. zfs path:disko.nix
+
+### Ephemeral Support
+- [Impermanence Module](https://github.com/nix-community/impermanence): A module to map directories to permanent store.
+- [tmpfs as root](https://elis.nu/blog/2020/05/nixos-tmpfs-as-root): How to configure system for impermanence.
+- [tmpfs as home](https://elis.nu/blog/2020/06/nixos-tmpfs-as-home/):Use impermanence module with home-manager
+- [Erase Your Darlings](https://grahamc.com/blog/erase-your-darlings/): Essay on "why" you should create an ephemeral system
+
+
 *See the readme in the root of this project for more information.*
