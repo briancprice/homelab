@@ -10,17 +10,18 @@
     home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    # Machines
-    lenovo.url = "./machines/lenovo"
-    lenovo.url.inputs.nixpkgs follows = "nixpkgs";
-   
+    # Machine configurations
+    homelab-machines.url = ./machines
+    homelab-machines.inputs.nixpkgs.follows = "nixpkgs";
+
   };
-  outputs = { self, nixpkgs, home-manager, lenovo ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, homelab-machines ... }@inputs:
   let
   in {
 
-    #hosts
-    inherit lenovo;
+
+    # Onboarding Machine Configurations
+    nixosConfigurations.lenovo-bootstrap = homelab-machines.lenovo-bootstrap;
 
     nixosConfigurations.nixos-dev = nixpkgs.lib.nixosSystem {
       system = "x86_64_linux";
