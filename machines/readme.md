@@ -14,9 +14,9 @@ homelab/machines contains a directory for each machine...
 TODO: Finsish documentation
 ---
 
-### Common Machine Installation Process
-
 [NixOS Wiki: Disko](wiki.nixos.org/wiki/Disko)
+
+### Common Machine Installation Process
 
 #### Enable ssh on NixOS Install image...
 ```sh
@@ -29,6 +29,13 @@ sudo passwd
 # Restart sshd
 sudo systemctl restart sshd
 ```
+
+### Wipeout everything for fresh install
+```sh
+# WARNING: THIS WILL ERASE EVERYTHING
+sudo wipefs --all /dev/vda
+```
+
 #### Install the boostsrap image...
 ```sh
 # This example will use the Lenovo machine configuration...
