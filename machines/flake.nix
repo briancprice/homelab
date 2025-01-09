@@ -16,32 +16,18 @@
   let
   in {
 
-    # These configuration modules contain only
-    # what is needed from a hardware perspective
-    # and can be aded to the host configurations
-    # in the final flake 
-    nixosModules.lenovo-config = { config, ... }: {
-        config.networking.hostName = "lenovo";
-
-        imports = [
-          disko.nixosModules.disko
-          ./lenovo/disko.nix
-          ./common/boot-efi.nix
-          ./qemu-guest/hardware-configuration.nix
-        ];
-    };
-
     # These NixOs system configurations can be
     # used to bootstrap a base config after
     # installing disko to setup requirements
     # prior to installing the final
     # host configurations from the main flakes
+
     nixosConfigurations = {
-      bootstrap-lenovo = nixpkgs.lib.nixosSystem {
+      lenovo-bootstrap = nixpkgs.lib.nixosSystem {
         system = "x86_64_linux";
         specialArgs = { inherit inputs; };
         modules = [
-          self.nixosModules.lenovo-config
+          ./lenovo/machine-configuration.nix
           ./common/onboard-configuration.nix
         ];
       };

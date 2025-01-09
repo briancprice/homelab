@@ -23,7 +23,7 @@
               mountpoint = "/boot";
               mountOptions = ["umask=0077"];
             };
-          }
+          };
 
           # The Root partition "/"
           /*

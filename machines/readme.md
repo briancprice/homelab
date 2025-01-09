@@ -38,19 +38,20 @@ sudo systemctl restart sshd
 
 cd ~/
 git clone https://github.com/briancprice/homelab.git
+cd homelab
 
 # 3.  Run Disko to partition/format the drives
 # *** WARNING this is destructive!
 sudo nix --experimental-features "nix-command flakes" \
 run github:nix-community/disko -- \
---mode disko ./machines/lenovo/disko-config
+--mode disko ./machines/lenovo/disko.nix
 
 # Notice that the command enables flakes and nix-command
 # Look at all the output from disko and verify success
 
 # 4.  Install the simple onboarding configuration for the        machine...
 
-sudo nix-install --flakes ./machines#lenovo-bootstrap \
+sudo nixos-install --flake ./machines#lenovo-bootstrap \
 --no-root-passwd
 
 # 5.  Reboot the machine and verify success.  The bootstrap profiles only have one user by default, this is root, you'll need to ssh into the machine using the key
@@ -64,6 +65,19 @@ nixos-install --flakes ./#lenovo-host \
 --no-root-passwd
 
 ```
+
+```bash
+# Note: disko-install can be used to format, partition, and install in one step
+
+sudo nix --experimental-features "nix-command flakes" \
+ru github:nix-community/disko/latest#disko-install -- \
+--write-efi-boot-entries \
+--flake ./machines#lenovo-bootstrap \
+--disk main /dev/vda
+
+# Note:
+# --write-efi-boot-entries is needed for non-removable drives
+# --disk main /dev/vda replaces the main disk entry in the disko.nix
 
 ---
 *See the readme in the root of this project for more information.*
