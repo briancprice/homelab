@@ -1,5 +1,27 @@
 {
   "nodes": {
+    "disko": {
+      "inputs": {
+        "nixpkgs": [
+          "homelab-machines",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1734088167,
+        "narHash": "sha256-snPBgTqwn3FPZVdFC5yt7Bnk3squim1vZOZ8CObWykk=",
+        "owner": "nix-community",
+        "repo": "disko",
+        "rev": "65a441502c9382d41ada1adbc9bd31d6c9b00fe2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "ref": "latest",
+        "repo": "disko",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -21,6 +43,24 @@
         "type": "github"
       }
     },
+    "homelab-machines": {
+      "inputs": {
+        "disko": "disko",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1,
+        "narHash": "sha256-B4EuReV1SLE6O6vRR2P6HrTugXkXXWgZv0SDz/373g8=",
+        "path": "/nix/store/13qxsnxk2bmsd7yrx2wamlgqx483n44x-source/machines",
+        "type": "path"
+      },
+      "original": {
+        "path": "/nix/store/13qxsnxk2bmsd7yrx2wamlgqx483n44x-source/machines",
+        "type": "path"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1736061677,
@@ -40,6 +80,7 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
+        "homelab-machines": "homelab-machines",
         "nixpkgs": "nixpkgs"
       }
     }
