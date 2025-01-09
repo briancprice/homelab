@@ -70,7 +70,7 @@ nixos-install --flakes ./#lenovo-host \
 # Note: disko-install can be used to format, partition, and install in one step
 
 sudo nix --experimental-features "nix-command flakes" \
-ru github:nix-community/disko/latest#disko-install -- \
+run github:nix-community/disko/latest#disko-install -- \
 --write-efi-boot-entries \
 --flake ./machines#lenovo-bootstrap \
 --disk main /dev/vda
