@@ -11,17 +11,17 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     # Machine configurations
-    homelab-machines.url = ./machines
+    homelab-machines.url = "./machines";
     homelab-machines.inputs.nixpkgs.follows = "nixpkgs";
 
   };
-  outputs = { self, nixpkgs, home-manager, homelab-machines ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, homelab-machines, ... }@inputs:
   let
   in {
 
 
     # Onboarding Machine Configurations
-    nixosConfigurations.lenovo-bootstrap = homelab-machines.lenovo-bootstrap;
+    nixosConfigurations.lenovo-bootstrap = inputs.homelab-machines.nixosConfigurations.lenovo-bootstrap;
 
     nixosConfigurations.nixos-dev = nixpkgs.lib.nixosSystem {
       system = "x86_64_linux";
