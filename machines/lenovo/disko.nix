@@ -99,10 +99,24 @@
           options.mountpoint = "legacy";
         };
 
+        # Location for sops files
+        sops = {
+          type = "zfs_fs";
+          mountpoint = "/nix/persistent/sops";
+          options.mountpoint = "legacy";
+        };
+
+        # TODO: Make this an encrypted dataset
+        secure = {
+          type = "zfs_fs";
+          mountpoint = "/nix/persistent/secure";
+          options.mountpoint = "legacy";
+        };
+
         # Location for games
         games = {
           type = "zfs_fs";
-          mountpoint = "/nix/persistent-games";
+          mountpoint = "/nix/persistent/games";
           options.mountpoint = "legacy";
         };
       };

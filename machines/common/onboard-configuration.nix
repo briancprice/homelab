@@ -17,7 +17,7 @@ in
   services.openssh.settings.PermitRootLogin = "prohibit-password";
   
   # Setup the root user used for onboarding
-  users.mutableUsers = false;
+  users.mutableUsers = true;
   users.users.root.openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKQM3PinzEcWHWb7JZ+5iJMttHhlbIizZ4T9bcXvCD3f" ];
   users.users.root.initialHashedPassword = "$y$j9T$ey8R7Bclqq3pWW477qgU//$xtVBLgFR5KsmRdM4pLfITdRnp2TdBDZ6I5T7Z4fnuE.";
   
