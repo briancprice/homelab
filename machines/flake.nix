@@ -42,7 +42,7 @@
         specialArgs = { inherit inputs; };
         modules = [
           self.nixosModules.lenovo-config
-          ./common/default.nix
+          ./common/onboard-configuration.nix
         ];
       };
     };
