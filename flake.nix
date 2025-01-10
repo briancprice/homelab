@@ -32,6 +32,7 @@
           ./machines/common/onboard-configuration.nix 
           ./settings/nixos.nix
           ./users/system/remotebuild.nix
+          ./services/distributed-builds.nix
         ];
       };
 
@@ -81,6 +82,7 @@
           home-manager.useGlobalPkgs = true;
           home-manager.users.brian = import ./home-manager/brian.nix;
           }
+        ./users/system/remotebuild.nix
       ];
     };
   };
