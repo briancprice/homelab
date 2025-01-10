@@ -19,11 +19,11 @@
   let
   in {
 
+    inherit (inputs.homelab-machines);
 
     # Onboarding Machine Configurations
-    nixosConfigurations.lenovo-bootstrap = inputs.homelab-machines.nixosConfigurations.lenovo-bootstrap;
-    nixosConfigurations.qemu-bootstrap = inputs.homelab-machines.nixosConfigurations.qemu-bootstrap;
 
+    # A development environment running in a vm
     nixosConfigurations.nixos-dev = nixpkgs.lib.nixosSystem {
       system = "x86_64_linux";
 
@@ -31,9 +31,15 @@
       modules = [
 
         # Inline module to streamline config
-        ({config, pkgs, inputs, ... }: { 
-          config.networking.hostName = "nixos-dev"; 
-          config.system.stateVersion = "24.11";
+        ({config, pkgs, inputs, ... }: with config; { 
+          
+          networking.hostName = "nixos-dev"; 
+          system.stateVersion = "24.11";
+          
+           # Boot settings...
+           # Use the systemd-boot EFI boot loader.
+           boot.loader.systemd-boot.enable = true;
+           boot.loader.efi.canTouchEfiVariables = true;
         })
 
         # NixOS settings
@@ -41,7 +47,6 @@
 
         # System settings
         ./hardware/qemu-guest.nix
-        ./machines/common/boot-efi.nix
 
         # Network Settings
         ./networks/wired.nix
