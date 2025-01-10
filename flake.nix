@@ -22,6 +22,7 @@
 
     # Onboarding Machine Configurations
     nixosConfigurations.lenovo-bootstrap = inputs.homelab-machines.nixosConfigurations.lenovo-bootstrap;
+    nixosConfigurations.qemu-bootstrap = inputs.homelab-machines.nixosConfigurations.qemu-bootstrap;
 
     nixosConfigurations.nixos-dev = nixpkgs.lib.nixosSystem {
       system = "x86_64_linux";

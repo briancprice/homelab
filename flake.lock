@@ -46,19 +46,35 @@
     "homelab-machines": {
       "inputs": {
         "disko": "disko",
+        "impermanence": "impermanence",
         "nixpkgs": [
           "nixpkgs"
         ]
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-B4EuReV1SLE6O6vRR2P6HrTugXkXXWgZv0SDz/373g8=",
-        "path": "/nix/store/13qxsnxk2bmsd7yrx2wamlgqx483n44x-source/machines",
+        "narHash": "sha256-128nCbo5ZqgcQM7Ra/WFpmYlnGlw6p1jGMoUTFlOj+U=",
+        "path": "/nix/store/zhcgjdxhqjjp3pdgmdkcqh1ylylz7ivw-source/machines",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/13qxsnxk2bmsd7yrx2wamlgqx483n44x-source/machines",
+        "path": "/nix/store/zhcgjdxhqjjp3pdgmdkcqh1ylylz7ivw-source/machines",
         "type": "path"
+      }
+    },
+    "impermanence": {
+      "locked": {
+        "lastModified": 1734945620,
+        "narHash": "sha256-olIfsfJK4/GFmPH8mXMmBDAkzVQ1TWJmeGT3wBGfQPY=",
+        "owner": "nix-community",
+        "repo": "impermanence",
+        "rev": "d000479f4f41390ff7cf9204979660ad5dd16176",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "impermanence",
+        "type": "github"
       }
     },
     "nixpkgs": {
