@@ -9,7 +9,7 @@
     # Home manager    
     home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-
+    
     # Machine configurations
     homelab-machines.url = "./machines";
     homelab-machines.inputs.nixpkgs.follows = "nixpkgs";
@@ -17,11 +17,22 @@
   };
   outputs = { self, nixpkgs, home-manager, homelab-machines, ... }@inputs:
   let
+    wrapped_homelab_machines = homelab-machines;
   in {
 
     inherit (inputs.homelab-machines);
 
     # Onboarding Machine Configurations
+
+    nixosConfigurations.lenovo = nixpkgs.lib.nixosSystem {
+        system = "x86_64_linux";
+        specialArgs = homelab-machines;
+        modules = [
+          inputs.homelab-machines.nixosModules.lenovoConfig
+          ./machines/common/onboard-configuration.nix
+          ./users/system/remotebuild.nix
+        ];
+      };
 
     # A development environment running in a vm
     nixosConfigurations.nixos-dev = nixpkgs.lib.nixosSystem {

@@ -54,11 +54,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-128nCbo5ZqgcQM7Ra/WFpmYlnGlw6p1jGMoUTFlOj+U=",
-        "path": "/nix/store/758xzfr0gz45f1g8jd0zxhiry57kc0i4-source/machines",
+        "path": "/nix/store/9zcww8cvyp1gb7ax3xnplgnyh357dy5c-source/machines",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/758xzfr0gz45f1g8jd0zxhiry57kc0i4-source/machines",
+        "path": "/nix/store/9zcww8cvyp1gb7ax3xnplgnyh357dy5c-source/machines",
         "type": "path"
       }
     },
