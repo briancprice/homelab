@@ -29,7 +29,8 @@
         specialArgs = homelab-machines;
         modules = [
           inputs.homelab-machines.nixosModules.lenovoConfig
-          ./machines/common/onboard-configuration.nix
+          ./machines/common/onboard-configuration.nix 
+          ./settings/nixos.nix
           ./users/system/remotebuild.nix
         ];
       };
