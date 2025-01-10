@@ -1,4 +1,4 @@
- # Disko configuration for my lenovo laptop
+ # Disko configuration for a qemu vm laptop
 {
   disko.devices = 
   {
@@ -21,7 +21,7 @@
               mountpoint = "/boot";
               mountOptions = ["umask=0077"];
             };
-          }
+          };
           root = 
           {
             size = "100%";

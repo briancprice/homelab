@@ -25,7 +25,7 @@ with config; {
     ./disko.nix
 
     # Hardware configuration for lenovo laptop
-    ../qemu-guest/hardware-configuration.nix
+    ../qemu/hardware-configuration.nix
 
     # Impermenance
     inputs.impermanence.nixosModules.impermanence
