@@ -1,10 +1,10 @@
 
 # "Brian's default home-manager configuration";
-{ config, pkgs, ... }:
+{ config, pkgs, osConfig, ... }:
 {
   home.username = "brian";
   home.homeDirectory = "/home/brian";
-  home.stateVersion = "24.11";
+  home.stateVersion = osConfig.system.stateVersion;
 
   imports = [
     ./brian-de.nix

@@ -39,6 +39,7 @@
         system = "x86_64_linux";
         specialArgs = { inherit inputs; };
         modules = [
+          ({ ... }: { system.stateVersion = stateVersion; })
           ./lenovo/machine-configuration.nix
           ./common/onboard-configuration.nix
         ];
@@ -46,8 +47,10 @@
 
       # Base configuration for a qemu vm
       qemu-guest-bootstrap = nixpkgs.lib.nixosSystem {
+        system = "x86_64_linux";
         specialArgs = { inherit inputs; };
         modules = [
+          ({ ... }: { system.stateVersion = stateVersion; })
           ./qemu/machine-configuration.nix
           ./common/onboard-configuration.nix
         ];

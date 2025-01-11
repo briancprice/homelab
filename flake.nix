@@ -16,8 +16,8 @@
 
   };
   outputs = { self, nixpkgs, home-manager, homelab-machines, ... }@inputs:
-  let
-    wrapped_homelab_machines = homelab-machines;
+  let 
+    stateVersion = "24.11";
   in {
 
     inherit (inputs.homelab-machines);
@@ -28,6 +28,7 @@
         system = "x86_64_linux";
         specialArgs = homelab-machines;
         modules = [
+          ({ ... }: { system.stateVersion = stateVersion;})
           inputs.homelab-machines.nixosModules.lenovoConfig
           ./machines/common/onboard-configuration.nix 
           ./settings
@@ -51,7 +52,7 @@
         ({config, pkgs, inputs, ... }: with config; { 
           
           networking.hostName = "nixos-dev"; 
-          system.stateVersion = "24.11";
+          system.stateVersion = stateVersion;
           
            # Boot settings...
            # Use the systemd-boot EFI boot loader.

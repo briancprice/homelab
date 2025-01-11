@@ -17,6 +17,4 @@ in
     # Services
     ../../services/openssh/openssh-permissive.nix
   ]; 
-
-  system.stateVersion = "24.11"; # Did you read the comment?
 }

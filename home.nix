@@ -2,7 +2,7 @@
 {
   home.username = "brian";
   home.homeDirectory = "/home/brian";
-  home.stateVersion = "24.11";
+  home.stateVersion = system.stateVersion;
 
   home.sessionVariables = {
     SUDO_EDITOR = "vim";
