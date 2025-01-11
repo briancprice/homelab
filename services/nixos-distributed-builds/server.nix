@@ -18,7 +18,7 @@
   # Create a bind-mount for the nixos configuration
   fileSystems."/etc/nixos" = {
     # TODO: Read nfs build server from config
-    device = "/home/users/brian/homelab";
+    device = "/home/brian/homelab";
     options = [ "ro" "bind" ];
     neededForBoot = false;
   };
