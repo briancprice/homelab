@@ -64,7 +64,7 @@
         ./settings
 
         # System settings
-        ./hardware/qemu-guest.nix
+        ./machines/nixos-dev/qemu-guest.nix
 
         # Network Settings
         ./networks/wired.nix
