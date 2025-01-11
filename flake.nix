@@ -33,7 +33,7 @@
           ./machines/common/onboard-configuration.nix 
           ./settings
           ./services/nixos-distributed-builds/client.nix
-          ./users/root.nix
+          ./users/root/root.nix
 
            # Services
         ./services/openssh/openssh-permissive.nix
@@ -83,7 +83,7 @@
          home-manager.nixosModules.home-manager {
           home-manager.useUserPackages = true;
           home-manager.useGlobalPkgs = true;
-          home-manager.users.brian = import ./home-manager/brian.nix;
+          home-manager.users.brian = import ./users/brian/brian-home.nix;
           }
       ];
     };

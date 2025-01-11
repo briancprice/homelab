@@ -5,7 +5,7 @@
   # Setup my wallpaper
   # TODO: Disable if not gnome
   home.file.wallpaper = {
-    source = ../desktops/wallpaper;
+    source = ../../desktops/wallpaper;
     target = ".config/cinnamon/backgrounds";
     recursive = true;
   };

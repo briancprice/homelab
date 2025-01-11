@@ -15,8 +15,8 @@ The users folder contains per-user nixos configuration.
 The configuration for dot files using [home-manager](https://github.com/nix-community/home-manager) goes here as well.
 - Human users 
   - Go inside the *users* folder.
-  - One file per user
-  - The home-manager config can go in the same file as the nixos-user config
+  - There is a folder for each user
+  - The home-manager files go in the /users/<user> folder as well
   - Use [sops] to store the user password.
 - System users
   - Defined with the service that needs them

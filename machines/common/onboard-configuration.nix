@@ -10,7 +10,7 @@ in
     # Settings 
     ../../settings
     # Users
-    ../../users/root.nix
+    ../../users/root/root.nix
     # Package sets
     ../../package-sets/system-admin.nix
     ../../package-sets/system-minimal.nix

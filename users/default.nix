@@ -3,8 +3,8 @@
 { config, pkgs, ... }:
 {
   imports = [
-    ./brian.nix
-    ./beth.nix
-    ./root.nix
+    ./brian/brian.nix
+    ./beth/beth.nix
+    ./root/root.nix
   ];
 }
