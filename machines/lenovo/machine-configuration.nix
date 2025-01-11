@@ -43,7 +43,6 @@ with config; {
   environment.persistence."/nix/persistent" = {
     directories = [
       "/var/lib/nixos"
-      "/etc/nixos"
       "/etc/NetworkManager/system-connections"
       "/var/lib/bluetooth"
     ];
@@ -53,6 +52,7 @@ with config; {
       "/etc/machine-id"
 
       # The openssh keys
+      "/etc/nixos/"
       "/etc/ssh/ssh_host_rsa_key"
       "/etc/ssh/ssh_host_rsa_key.pub"
       "/etc/ssh/ssh_host_ed25519_key"

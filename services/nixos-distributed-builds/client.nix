@@ -9,16 +9,17 @@
 #   the nfs share vs github.  We want to avoid a homelab server updating with an unknown nfs state.
 
 # TODO: Params (build machine and source machine)
+# TODO: Add nfs-utils package here
 { pkgs, ... }:
 {
 
-  # nfs source shre 
+  # nfs source share 
   fileSystems."/etc/nixos" = {
     # TODO: Read nfs build server from config
-    device = "192.168.50.128:/etc/nixos"
+    device = "192.168.50.128:/etc/nixos";
     fsType = "nfs";
-    options = [ "ro" "soft" "init" ];
-    needeForBoot = false;
+    options = [ "ro" "soft" "intr" "noauto" "x-systemd.automount" ];
+    neededForBoot = false;
   };
   
   # Enable distributed builds
@@ -32,8 +33,7 @@
       hostName = "192.168.50.128";
       sshUser = "remotebuild";
       # TODO: Move remote-build key to sops
-      # The key is in /etc/nixos because it's persisted for now.
-      sshKey = "/etc/nixos/remotebuild";
+      sshKey = "/nix/persistent/secure/remotebuild";
       system = "${pkgs.stdenv.hostPlatform.system}";
       supportedFeatures = [ "nixos-test" "big-parallel" "kvm" ];
     }

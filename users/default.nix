@@ -5,8 +5,6 @@
   imports = [
     ./brian.nix
     ./beth.nix
+    ./root.nix
   ];
-
-  # Disable root login
-  users.users.root.hashedPassword = null;
 }

@@ -30,9 +30,13 @@
         modules = [
           inputs.homelab-machines.nixosModules.lenovoConfig
           ./machines/common/onboard-configuration.nix 
-          ./settings/nixos.nix
-          ./users/system/remotebuild.nix
+          ./settings
           ./services/nixos-distributed-builds/client.nix
+          ./users/root.nix
+
+           # Services
+        ./services/openssh-permissive.nix
+        ./services/nixos-distributed-builds/client.nix
         ];
       };
 
@@ -56,17 +60,13 @@
         })
 
         # NixOS settings
-        ./settings/nixos.nix
+        ./settings
 
         # System settings
         ./hardware/qemu-guest.nix
 
         # Network Settings
         ./networks/wired.nix
-        ./networks/network-host-id.nix
-
-        # Misc Settings
-        ./settings/localization.nix
         
         # Services
         ./services/openssh-secure.nix
@@ -75,6 +75,7 @@
         # Desktops/apps
         ./desktops/cinnamon.nix
         ./package-sets/system-minimal.nix
+        ./package-sets/system-admin.nix
 
         # Users
         ./users

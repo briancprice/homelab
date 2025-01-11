@@ -18,6 +18,7 @@
 
   outputs = { self, nixpkgs, disko, impermanence, ... }@inputs:
   let
+      stateVersion = "24.11"; # Did you read the comment?
   in {
 
     # These NixOs system configurations can be
