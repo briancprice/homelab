@@ -32,7 +32,7 @@
           ./machines/common/onboard-configuration.nix 
           ./settings/nixos.nix
           ./users/system/remotebuild.nix
-          ./services/distributed-builds.nix
+          ./services/nixos-distributed-builds/client.nix
         ];
       };
 
@@ -70,6 +70,7 @@
         
         # Services
         ./services/openssh-secure.nix
+        ./services/nixos-distributed-builds/server.nix
         
         # Desktops/apps
         ./desktops/cinnamon.nix
@@ -82,7 +83,6 @@
           home-manager.useGlobalPkgs = true;
           home-manager.users.brian = import ./home-manager/brian.nix;
           }
-        ./users/system/remotebuild.nix
       ];
     };
   };
