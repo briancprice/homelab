@@ -35,7 +35,7 @@
           ./users/root.nix
 
            # Services
-        ./services/openssh-permissive.nix
+        ./services/openssh/openssh-permissive.nix
         ./services/nixos-distributed-builds/client.nix
         ];
       };
@@ -69,7 +69,7 @@
         ./networks/wired.nix
         
         # Services
-        ./services/openssh-secure.nix
+        ./services/openssh/openssh-secure.nix
         ./services/nixos-distributed-builds/server.nix
         
         # Desktops/apps

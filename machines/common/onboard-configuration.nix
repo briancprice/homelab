@@ -15,7 +15,7 @@ in
     ../../package-sets/system-admin.nix
     ../../package-sets/system-minimal.nix
     # Services
-    ../../services/openssh-permissive.nix
+    ../../services/openssh/openssh-permissive.nix
   ]; 
 
   system.stateVersion = "24.11"; # Did you read the comment?
