@@ -1,15 +1,16 @@
 # beth.nix
 # The nixos users.users.beth settings
 { config, pkgs, ... }:
+let name = "beth"; in
 {
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.beth = {
+  users.users.${name} = {
     isNormalUser = true;
-    description = "beth";
+    description = "Beth";
+    group = name;
     extraGroups = [ "networkmanager" ];
     packages = with pkgs; [
       tldr
     ];
   };
+  users.groups.${name} = {};
 }
-
