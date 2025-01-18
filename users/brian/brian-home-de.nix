@@ -28,6 +28,7 @@
      extensions = with pkgs.vscode-extensions; [
        jnoortheen.nix-ide
        vscodevim.vim
+       streetsidesoftware.code-spell-checker
      ];
 
      userSettings = {
