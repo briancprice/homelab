@@ -12,6 +12,7 @@
   home.sessionVariables = {
     SUDO_EDITOR = "vim";
     EDITOR = "vim";
+    NIX_PATH = "~/homelab";
   };
 
   programs.git = {
