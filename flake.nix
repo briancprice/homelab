@@ -62,6 +62,7 @@
 
         # NixOS settings
         ./settings
+        ./settings/flatpak.nix
 
         # System settings
         ./machines/dell-5810/hardware-configuration-with-filesystems.nix
