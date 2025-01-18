@@ -64,7 +64,7 @@
         ./settings
 
         # System settings
-        ./machines/nixos-dev/qemu-guest.nix
+        ./machines/dell-5810/hardware-configuration-with-filesystems.nix
 
         # Network Settings
         ./networks/wired.nix
