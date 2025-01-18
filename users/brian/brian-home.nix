@@ -7,7 +7,6 @@
   home.stateVersion = osConfig.system.stateVersion;
 
   imports = [
-    ./brian-home-de.nix
   ];
 
   home.sessionVariables = {

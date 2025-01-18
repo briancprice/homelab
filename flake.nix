@@ -83,7 +83,7 @@
          home-manager.nixosModules.home-manager {
           home-manager.useUserPackages = true;
           home-manager.useGlobalPkgs = true;
-          home-manager.users.brian = import ./users/brian/brian-home.nix;
+          home-manager.users.brian = import ./users/brian/brian-home-de.nix;
           }
       ];
     };

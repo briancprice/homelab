@@ -2,6 +2,10 @@
 # Brian's home-manager settings for machines with a desktop environment
 { config, pkgs, ... }:
 {
+
+  imports = [
+    ./brian-home.nix
+  ];
   # Setup my wallpaper
   # TODO: Disable if not gnome
   home.file.wallpaper = {
@@ -11,6 +15,11 @@
   };
   dconf.settings."org/cinnamon/desktop/background" = {
     picture-uri = "file://${config.home.homeDirectory}/.config/cinnamon/backgrounds/gray_orange_mountain_1.jpeg";
+  };
+
+  home.sessionVariables = {
+    SUDO_EDITOR = "vim";
+    EDITOR = "vim";
   };
   
   programs.chromium.enable = true;
@@ -25,6 +34,6 @@
        "editor.tabSize" = 2;
        "editor.stickyScroll.enabled" = false;
      };
-  };
+  }; 
 }
   
