@@ -54,11 +54,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-o2d0UE54qBDCeOxhlQXLt/A9VHKS0zIe9NCEqaeSEzk=",
-        "path": "/nix/store/jfj6qxmc9ckg6cky7hxnif41w94g4gis-source/machines",
+        "path": "/nix/store/wc83xcii1wpck3r7bin8kmdpvi096ns2-source/machines",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/jfj6qxmc9ckg6cky7hxnif41w94g4gis-source/machines",
+        "path": "/nix/store/wc83xcii1wpck3r7bin8kmdpvi096ns2-source/machines",
         "type": "path"
       }
     },
