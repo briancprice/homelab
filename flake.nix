@@ -29,7 +29,7 @@
     # Onboarding Machine Configurations
     nixosConfigurations.lenovo = nixpkgs.lib.nixosSystem {
         system = "x86_64_linux";
-        #specialArgs = { inherit homelab-machines; inherit namespace; };
+        specialArgs = { namespace = namespace; };
         modules = [
           ({ config, ... }: { system.stateVersion = stateVersion;})
           homelab-machines.nixosModules.lenovoConfig
@@ -47,19 +47,25 @@
     # A development environment running in a vm
     nixosConfigurations.nixos-dev = nixpkgs.lib.nixosSystem {
       system = "x86_64_linux";
-
+      specialArgs = { namespace = namespace; };
       modules = [
+        ./options
 
         # Inline module to streamline config
-        ({config, ... }: with config; { 
+        ({config, ... }: {
+          config = {
+            ${namespace}.homelab = {
+              desktop.enabled = true;
+            };
+            
+            networking.hostName = "nixos-dev"; 
+            system.stateVersion = stateVersion;
           
-          networking.hostName = "nixos-dev"; 
-          system.stateVersion = stateVersion;
-          
-           # Boot settings...
-           # Use the systemd-boot EFI boot loader.
-           boot.loader.systemd-boot.enable = true;
-           boot.loader.efi.canTouchEfiVariables = true;
+            # Boot settings...
+            # Use the systemd-boot EFI boot loader.
+            boot.loader.systemd-boot.enable = true;
+            boot.loader.efi.canTouchEfiVariables = true;
+          };
         })
 
         # NixOS settings

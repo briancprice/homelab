@@ -51,6 +51,7 @@
         system = "x86_64_linux";
         modules = [
           ({ ... }: { system.stateVersion = stateVersion; })
+          ../options
           self.nixosModules.lenovoConfig
           ./common/onboard-configuration.nix
         ];
@@ -61,6 +62,7 @@
         system = "x86_64_linux";
         modules = [
           ({ ... }: { system.stateVersion = stateVersion; })
+          ../options
           self.nixosModules.qemuConfig
           ./common/onboard-configuration.nix
         ];
