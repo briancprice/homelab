@@ -34,7 +34,13 @@
      userSettings = {
        "editor.tabSize" = 2;
        "editor.stickyScroll.enabled" = false;
-     };
+       "cSpell.userWords" = [
+        "nixpkgs" "nixos"  "pkgs"
+        "disko"
+        "homelab"
+        "briancprice"
+       ];
+    };
   }; 
 }
   
