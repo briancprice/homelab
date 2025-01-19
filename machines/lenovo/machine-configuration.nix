@@ -2,7 +2,7 @@
 # Lenovo machine configurations settings
 # Requires 
 # - disko
-{ config, inputs, ... }:
+{ config, ... }:
 with config; {
   # The host name
   # Note, the host name is also used to calculate the machine name
@@ -21,14 +21,9 @@ with config; {
 
   imports = [
     # Use disko to mount the disks
-    inputs.disko.nixosModules.disko
     ./disko.nix
-
     # Hardware configuration for lenovo laptop
     ../qemu/hardware-configuration.nix
-
-    # Impermenance
-    inputs.impermanence.nixosModules.impermanence
   ];
 
   # Impermenance settings

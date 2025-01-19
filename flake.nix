@@ -15,21 +15,24 @@
     homelab-machines.inputs.nixpkgs.follows = "nixpkgs";
 
   };
-  outputs = { self, nixpkgs, home-manager, homelab-machines, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, homelab-machines, ... }:
   let 
     stateVersion = "24.11";
+
+    # This namespace is used for all custom attributes
+    namespace = "github__briancprice";
+
   in {
 
-    inherit (inputs.homelab-machines);
-
+    # inherit (homelab-machines);
+    
     # Onboarding Machine Configurations
-
     nixosConfigurations.lenovo = nixpkgs.lib.nixosSystem {
         system = "x86_64_linux";
-        specialArgs = homelab-machines;
+        #specialArgs = { inherit homelab-machines; inherit namespace; };
         modules = [
-          ({ ... }: { system.stateVersion = stateVersion;})
-          inputs.homelab-machines.nixosModules.lenovoConfig
+          ({ config, ... }: { system.stateVersion = stateVersion;})
+          homelab-machines.nixosModules.lenovoConfig
           ./machines/common/onboard-configuration.nix 
           ./settings
           ./services/nixos-distributed-builds/client.nix
@@ -45,11 +48,10 @@
     nixosConfigurations.nixos-dev = nixpkgs.lib.nixosSystem {
       system = "x86_64_linux";
 
-      specialArgs = { inherit inputs; };
       modules = [
 
         # Inline module to streamline config
-        ({config, pkgs, inputs, ... }: with config; { 
+        ({config, ... }: with config; { 
           
           networking.hostName = "nixos-dev"; 
           system.stateVersion = stateVersion;

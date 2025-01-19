@@ -2,7 +2,7 @@
 # Lenovo machine configurations settings
 # Requires 
 # - disko
-{ config, pkgs, lib, inputs, ... }:
+{ config, ... }:
 with config; with lib; {
   # The host name
   # Note, the host name is also used to calculate the machine name
@@ -18,7 +18,6 @@ with config; with lib; {
 
   imports = [
     # Use disko to mount the disks
-    inputs.disko.nixosModules.disko
     ./disko.nix
 
     # Hardware configuration for lenovo laptop

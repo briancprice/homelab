@@ -28,8 +28,20 @@
     # host configurations from the main flakes
 
     nixosModules = {
-      lenovoConfig = import ./lenovo/machine-configuration.nix;
-      qemuConfig = import ./qemu/machine-configuration.nix;
+      qemuConfig = { config, ... }: {
+        imports = [
+          inputs.disko.nixosModules.disko
+          ./qemu/machine-configuration.nix
+        ];
+      };
+
+      lenovoConfig = { config, ... }: {
+        imports = [
+          inputs.disko.nixosModules.disko
+          inputs.impermanence.nixosModules.impermanence
+          ./lenovo/machine-configuration.nix
+        ];
+      };
     };
 
     nixosConfigurations = {
@@ -37,10 +49,9 @@
       # Base configuration for my lenovo laptop
       lenovo-bootstrap = nixpkgs.lib.nixosSystem {
         system = "x86_64_linux";
-        specialArgs = { inherit inputs; };
         modules = [
           ({ ... }: { system.stateVersion = stateVersion; })
-          ./lenovo/machine-configuration.nix
+          self.nixosModules.lenovoConfig
           ./common/onboard-configuration.nix
         ];
       };
@@ -48,10 +59,9 @@
       # Base configuration for a qemu vm
       qemu-guest-bootstrap = nixpkgs.lib.nixosSystem {
         system = "x86_64_linux";
-        specialArgs = { inherit inputs; };
         modules = [
           ({ ... }: { system.stateVersion = stateVersion; })
-          ./qemu/machine-configuration.nix
+          self.nixosModules.qemuConfig
           ./common/onboard-configuration.nix
         ];
       };
