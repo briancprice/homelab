@@ -1,10 +1,11 @@
 { config, lib, namespace, ... }: with lib; 
 { 
-  options.${namespace}.homelab.settings.localization.enabled = mkEnableOption { default = true; };
+  options.${namespace}.homelab.settings.localization.enable = mkEnableOption { default = true; };
 
-  config = mkIf config.${namespace}.homelab.settings.localization.enabled {
+  config = mkIf config.${namespace}.homelab.settings.localization.enable {
     # Set your time zone.
     time.timeZone = "America/Denver";
+    time.ntp.enable = mkDefault true;
 
     # Select internationalization properties.
     i18n.defaultLocale = "en_US.UTF-8";
