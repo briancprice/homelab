@@ -3,6 +3,10 @@
 { config, pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
-    vim git wget usbutils pciutils nfs-utils
+    neofetch
+    vim git 
+    wget 
+    usbutils pciutils nfs-utils 
+    lm_sensors smartmontools
   ];
 }
