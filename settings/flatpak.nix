@@ -1,24 +1,27 @@
 # Installs flatpak support, 
 #   - Adds the gnome-software store
 #   - Adds the flathub repository
-{ config, pkgs, ... }:
+{ config, pkgs, lib, namespace, ... }:
 {
-  # Enable flatpak
-  services.flatpak.enable = true;
+  options.${namespace}.homelab.settings.flatpak.enabled = lib.mkEnableOption { default = false; };
+  
 
-  # Add the gnome-software store
-  environment.systemPackages = with pkgs; [
-    gnome-software
-  ];
+  config = lib.mkIf config.${namespace}.homelab.settings.flatpak.enabled {
+    # Enable flatpak
+    services.flatpak.enable = true;
 
-  # Add the flathub repo
-  systemd.services.add-flatpak-repos = {
-    wantedBy = [ "multi-user.target" ];
-    path = [ pkgs.flatpak ];
-    script = ''
-      flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-    '';
+    # Add the gnome-software store
+    environment.systemPackages = with pkgs; [
+      gnome-software
+    ];
+
+    # Add the flathub repo
+    systemd.services.add-flatpak-repos = {
+      wantedBy = [ "multi-user.target" ];
+      path = [ pkgs.flatpak ];
+      script = ''
+        flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+      '';
+    };
   };
-
 }
-

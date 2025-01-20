@@ -10,7 +10,7 @@ let name = "brian"; in
     group = name;
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-      tldr
+      tldr 
     ];
   };
   users.groups.${name} = {};

@@ -1,12 +1,12 @@
 { config, lib, namespace, ... }: with lib; 
 { 
-  options.${namespace}.homelab.settings.localization.enabled = mkEnableOption;
+  options.${namespace}.homelab.settings.localization.enabled = mkEnableOption { default = true; };
 
   config = mkIf config.${namespace}.homelab.settings.localization.enabled {
     # Set your time zone.
     time.timeZone = "America/Denver";
 
-    # Select internationalisation properties.
+    # Select internationalization properties.
     i18n.defaultLocale = "en_US.UTF-8";
 
     i18n.extraLocaleSettings = {
@@ -19,12 +19,13 @@
       LC_PAPER = "en_US.UTF-8";
       LC_TELEPHONE = "en_US.UTF-8";
       LC_TIME = "en_US.UTF-8";
-    };
+    }; 
 
     # Configure keymap in X11
-    services.xserver.xkb = {
+    services.xserver.xkb = mkIf config.${namespace}.homelab.headless {
       layout = "us";
       variant = "";
     };
   };
 }
+

@@ -52,10 +52,11 @@
         ./options
 
         # Inline module to streamline config
-        ({config, ... }: {
+        ({config, pkgs,  ... }: {
           config = {
             ${namespace}.homelab = {
-              desktop.enabled = true;
+              headless = false;
+              settings.flatpak.enabled = true;
             };
             
             networking.hostName = "nixos-dev"; 
@@ -70,7 +71,6 @@
 
         # NixOS settings
         ./settings
-        ./settings/flatpak.nix
 
         # System settings
         ./machines/dell-5810/hardware-configuration-with-filesystems.nix
