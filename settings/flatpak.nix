@@ -3,10 +3,10 @@
 #   - Adds the flathub repository
 { config, pkgs, lib, namespace, ... }:
 {
-  options.${namespace}.homelab.settings.flatpak.enabled = lib.mkEnableOption { default = false; };
+  options.${namespace}.homelab.settings.flatpak.enable = lib.mkEnableOption { default = false; };
   
 
-  config = lib.mkIf config.${namespace}.homelab.settings.flatpak.enabled {
+  config = lib.mkIf config.${namespace}.homelab.settings.flatpak.enable {
     # Enable flatpak
     services.flatpak.enable = true;
 

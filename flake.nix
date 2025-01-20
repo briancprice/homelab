@@ -56,7 +56,7 @@
           config = {
             ${namespace}.homelab = {
               headless = false;
-              settings.flatpak.enabled = true;
+              settings.flatpak.enable = true;
             };
             
             networking.hostName = "nixos-dev"; 
