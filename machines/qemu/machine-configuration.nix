@@ -2,7 +2,7 @@
 # Lenovo machine configurations settings
 # Requires 
 # - disko
-{ config, ... }:
+{ config, lib, ... }:
 with config; with lib; {
   # The host name
   # Note, the host name is also used to calculate the machine name

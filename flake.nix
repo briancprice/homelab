@@ -27,6 +27,7 @@
     # inherit (homelab-machines);
     
     # Onboarding Machine Configurations
+    /*
     nixosConfigurations.lenovo = nixpkgs.lib.nixosSystem {
         system = "x86_64_linux";
         specialArgs = { namespace = namespace; };
@@ -43,6 +44,7 @@
         ./services/nixos-distributed-builds/client.nix
         ];
       };
+    */
 
     # A development environment running in a vm
     nixosConfigurations.nixos-dev = nixpkgs.lib.nixosSystem {
@@ -73,7 +75,7 @@
         ./settings
 
         # System settings
-        ./machines/dell-5810/hardware-configuration-with-filesystems.nix
+        homelab-machines.nixosModules.dell-5810Config
 
         # Network Settings
         ./networks/wired.nix
