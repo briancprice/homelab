@@ -22,6 +22,8 @@
     # This namespace is used for all custom attributes
     namespace = "github__briancprice";
 
+    system-x86_64-linux = "x86_64-linux";
+
   in {
 
     # inherit (homelab-machines);
@@ -48,7 +50,7 @@
 
     # A development environment running in a vm
     nixosConfigurations.nixos-dev = nixpkgs.lib.nixosSystem {
-      system = "x86_64_linux";
+      system = system-x86_64-linux;
       specialArgs = { namespace = namespace; };
       modules = [
         ./options
@@ -68,6 +70,8 @@
             # Use the systemd-boot EFI boot loader.
             boot.loader.systemd-boot.enable = true;
             boot.loader.efi.canTouchEfiVariables = true;
+
+            environment.systemPackages = [ homelab-machines.packages.${system-x86_64-linux}.admin-scripts ];
           };
         })
 

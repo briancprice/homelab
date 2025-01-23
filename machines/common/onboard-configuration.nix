@@ -2,7 +2,7 @@
 # Provides a simple nix-os installation intended for bootstrapping the real install
 { config, lib, pkgs, ... }:
 let
-   
+  admin-scripts = (pkgs.callPackage ../packages/admin-scripts.nix {});
 in
 with lib; {
   # Warning: if impermanence is setup, make sure to preserve the machine-id
@@ -35,6 +35,11 @@ with lib; {
       
       # Only use this key for onboarding
       openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKQM3PinzEcWHWb7JZ+5iJMttHhlbIizZ4T9bcXvCD3f" ];
+
+      packages = with pkgs; [
+        admin-scripts  # Internal package
+        tldr
+      ];
     };
     groups.onboard = {};
 

@@ -19,8 +19,18 @@
   outputs = { self, nixpkgs, disko, impermanence, ... }@inputs:
   let
       namespace = "github__briancprice.homelab";
+      
       stateVersion = "24.11"; # Did you read the comment?
+
+      system-x86_64-linux = "x86_64-linux";
+
+      pkgs = import nixpkgs { system = system-x86_64-linux; };
+
   in {
+
+    packages.${system-x86_64-linux} = {
+      admin-scripts = pkgs.callPackage ./packages/admin-scripts {};
+    };
 
     # These NixOs system configurations can be
     # used to bootstrap a base config after
@@ -56,7 +66,7 @@
 
       # Base configuration for my lenovo laptop
       lenovo-bootstrap = nixpkgs.lib.nixosSystem {
-        system = "x86_64_linux";
+        system = system-x86_64-linux;
         specialArgs = { namespace = namespace; };
         modules = [
           ({ ... }: { system.stateVersion = stateVersion; })
@@ -67,7 +77,7 @@
 
       # Base configuration for a qemu vm
       qemu-guest-bootstrap = nixpkgs.lib.nixosSystem {
-        system = "x86_64_linux";
+        system = system-x86_64-linux;
         # specialArgs = { namespace = namespace; };
         modules = [
           ({ ... }: { system.stateVersion = stateVersion; })

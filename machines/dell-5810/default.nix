@@ -7,7 +7,7 @@ with lib; {
   imports = [
     ./hardware-configuration-with-filesystems.nix
     ./virtualization.nix
-    ./nvidia.nix
+    ../common/nvidia.nix
   ];
 
   # Enable/Disable sub-configs
@@ -31,6 +31,8 @@ with lib; {
         iommu-group = 46;
       };
     };
+
+
 
   };
 
