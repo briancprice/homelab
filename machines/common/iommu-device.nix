@@ -12,6 +12,12 @@ with lib; {
       description = "The display name for this graphics card";
     }
 
+    description = mkOption {
+      type = type.string;
+      default = "";
+      description = "The description for this device."
+    }
+
     deviceId = mkOption {
       type = types.string;
       default = _deviceId;

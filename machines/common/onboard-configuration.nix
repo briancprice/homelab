@@ -2,7 +2,7 @@
 # Provides a simple nix-os installation intended for bootstrapping the real install
 { config, lib, pkgs, ... }:
 let
-  admin-scripts = (pkgs.callPackage ../packages/admin-scripts.nix {});
+  admin-scripts = (pkgs.callPackage ../packages/admin-scripts {});
 in
 with lib; {
   # Warning: if impermanence is setup, make sure to preserve the machine-id

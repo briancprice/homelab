@@ -3,6 +3,21 @@
 let 
   cfg = config.${namespace}.homelab-machines.dell-5810.graphics.nvidia;
 
+  graphics-card = {config, lib, ...}: with lib; {
+    graphics = lib.mkOption {
+      type = lib.types.submodule (import ../common/iommu-device.nix);
+      description = "The graphics portion of the graphics card.";
+    };
+    sound = lib.mkOption {
+      type = lib.types.submodule (import ../common/iommu-device.nix);
+      description = "The sound portion of the graphics card.";
+    };
+    notes = lib.mkOption {
+      type = lib.types.string;
+      description = "Any notes about the graphics card for reference.";
+    };
+  };
+
 in with lib; {
 
   options.${namespace}.homelab-machines.dell-5810.graphics.nvidia = {
@@ -15,7 +30,7 @@ in with lib; {
     };
 
     cards = lib.mkOption { 
-      type = lib.types.attrsOf (lib.types.submodule (import ../common/graphics-card.nix));
+      type = lib.types.attrsOf (lib.types.submodule (graphics-card) );
       default = {};
       description = "NVIDIA Graphics card information";
     };
