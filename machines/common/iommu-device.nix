@@ -7,25 +7,25 @@ with lib; {
   options = {
 
     name = mkOption {
-      type = type.string;
+      type = type.str;
       default = name;
       description = "The display name for this graphics card";
-    }
+    };
 
     description = mkOption {
-      type = type.string;
+      type = type.str;
       default = "";
-      description = "The description for this device."
-    }
+      description = "The description for this device.";
+    };
 
     deviceId = mkOption {
-      type = types.string;
+      type = types.str;
       default = _deviceId;
       description = "The device ID in the format xxxx:xxxx";
     };
 
     pcieId = mkOption {
-      type = types.string;
+      type = types.str;
       default = _graphics-pcieId;
       description = "The PCIE ID of the card, in the format 03:00.0";
     };

@@ -37,6 +37,7 @@
        "cSpell.userWords" = [
         "nixpkgs" "nixos"  "pkgs"
         "disko"
+        "iommu"
         "homelab"
         "briancprice"
        ];

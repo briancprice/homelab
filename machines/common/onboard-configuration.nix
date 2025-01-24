@@ -5,24 +5,12 @@ let
   admin-scripts = (pkgs.callPackage ../packages/admin-scripts {});
 in
 with lib; {
-  # Warning: if impermanence is setup, make sure to preserve the machine-id
-  imports = [
-  ];
 
    # Set your time zone.
   time.timeZone = "America/Denver";
 
   # Select internationalization properties.
   i18n.defaultLocale = "en_US.UTF-8"; 
-
-   # Enable flakes
-  nix.settings.experimental-features = mkDefault ["nix-command" "flakes"];
-  nix.settings.cores = mkDefault 0;
-
-  # Set a hostId, this is needed by zfs
-  # WARNING, if you change the hostName after onboarding the PC, the hostId will also change!
-  networking.hostId = (builtins.substring 0 8 (builtins.hashString "sha256" config.networking.hostName));
-
   # Setup a user account for onboarding
   users = {
     users.onboard = {
@@ -50,14 +38,5 @@ with lib; {
   # Enable ssh, the onboard identity key will be needed
   services.openssh.enable = true;
   services.openssh.settings.PermitRootLogin = "no";
-  services.openssh.settings.PasswordAuthentication = false;
-
-  # Provide default packages
-  environment.systemPackages = with pkgs; [
-    neofetch
-    vim git wget 
-    usbutils pciutils nfs-utils 
-    smartmontools
-  ];
-
+  services.openssh.settings.PasswordAuthentication = false; 
 }

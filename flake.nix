@@ -3,14 +3,11 @@
 
   inputs = {
 
-    # nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
 
-    # Home manager    
     home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     
-    # Machine configurations
     homelab-machines.url = "./machines";
     homelab-machines.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -21,8 +18,9 @@
 
     # This namespace is used for all custom attributes
     namespace = "github__briancprice";
-
     system-x86_64-linux = "x86_64-linux";
+
+    # pkgs = import nixpkgs { system = system-x86_64-linux; };
 
   in {
 
@@ -86,7 +84,7 @@
         
         # Services
         ./services/openssh/openssh-secure.nix
-        ./services/nixos-distributed-builds/server.nix
+        # ./services/nixos-distributed-builds/server.nix
         
         # Desktops/apps
         ./desktops/cinnamon.nix

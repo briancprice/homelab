@@ -27,7 +27,4 @@
   services.libinput.enable = true;
 
   programs.firefox.enable = false;
-  
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
 }
