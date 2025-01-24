@@ -8,7 +8,7 @@
     home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     
-    homelab-machines.url = "./machines";
+    homelab-machines.url = "github:briancprice/homelab-machines";
     homelab-machines.inputs.nixpkgs.follows = "nixpkgs";
 
   };
@@ -88,8 +88,6 @@
         
         # Desktops/apps
         ./desktops/cinnamon.nix
-        ./package-sets/system-minimal.nix
-        ./package-sets/system-admin.nix
 
         # Users
         ./users

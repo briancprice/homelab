@@ -1,2 +1,0 @@
-# Lenovo Laptop
-

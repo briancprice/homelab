@@ -52,14 +52,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1,
-        "narHash": "sha256-RQ9inHXyxklU/vlEzaMp8yT7JdznLJGBDpowuB7WUSM=",
-        "path": "/nix/store/gg6pzs63n5q7cgrzn11jfdbzjaghcqzd-source/machines",
-        "type": "path"
+        "lastModified": 1737683238,
+        "narHash": "sha256-4PLr2QUKambwABeyhIXM39qd/CCtAXmE0Vq+nkEgNeg=",
+        "owner": "briancprice",
+        "repo": "homelab-machines",
+        "rev": "3f39d36f4b8ea6959720ae0338ab1dee3e26eb82",
+        "type": "github"
       },
       "original": {
-        "path": "/nix/store/gg6pzs63n5q7cgrzn11jfdbzjaghcqzd-source/machines",
-        "type": "path"
+        "owner": "briancprice",
+        "repo": "homelab-machines",
+        "type": "github"
       }
     },
     "impermanence": {
