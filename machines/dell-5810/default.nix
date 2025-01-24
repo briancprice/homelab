@@ -43,7 +43,7 @@ in
       ];
 
       initrd.kernelModules = [
-        "vfio_pci" "vfio" "vfio_iommu_type1" "vfio_virqfd"
+        "vfio_pci" "vfio" "vfio_iommu_type1"
         "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm"
       ];
 
