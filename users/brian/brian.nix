@@ -8,7 +8,10 @@ let name = "brian"; in
     isNormalUser = true;
     description = "brian";
     group = name;
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ 
+      "networkmanager" "wheel" 
+      "libvirtd"
+    ];
     packages = with pkgs; [
       tldr 
     ];

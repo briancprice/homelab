@@ -1,18 +1,27 @@
 # Installs flatpak support, 
 #   - Adds the gnome-software store
 #   - Adds the flathub repository
+# TODO: Add the flatpak declarative management support.
 { config, pkgs, lib, namespace, ... }:
-{
-  options.${namespace}.homelab.settings.flatpak.enable = lib.mkEnableOption "flatpak";
+let
+  cfg = config.${namespace}.homelab.settings.flatpak;
+  in
+with lib; {
+  options.${namespace}.homelab.settings.flatpak = {
+    enable = mkEnableOption {
+      description = "Enable flatpak, if this install is not headless, the gnome-software package will also be installed.";
+      default = false;
+    };
+  };
   
 
-  config = lib.mkIf config.${namespace}.homelab.settings.flatpak.enable {
+  config = mkIf cfg.enable {
     # Enable flatpak
     services.flatpak.enable = true;
 
     # Add the gnome-software store
-    environment.systemPackages = with pkgs; [
-      gnome-software
+    environment.systemPackages = mkIf (!cfg.headless) [
+      pkgs.gnome-software
     ];
 
     # Add the flathub repo

@@ -8,7 +8,8 @@
     home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     
-    homelab-machines.url = "github:briancprice/homelab-machines";
+    # homelab-machines.url = "github:briancprice/homelab-machines";
+    homelab-machines.url = "/home/brian/homelab-machines";
     homelab-machines.inputs.nixpkgs.follows = "nixpkgs";
 
   };
@@ -19,8 +20,6 @@
     # This namespace is used for all custom attributes
     namespace = "github__briancprice";
     system-x86_64-linux = "x86_64-linux";
-
-    # pkgs = import nixpkgs { system = system-x86_64-linux; };
 
   in {
 
@@ -51,51 +50,23 @@
       system = system-x86_64-linux;
       specialArgs = { namespace = namespace; };
       modules = [
-        ./options
+        # External modules
+        homelab-machines.nixosModules.dell-5810Config
+        home-manager.nixosModules.home-manager
 
-        # Inline module to streamline config
-        ({config, pkgs,  ... }: {
-          config = {
-            ${namespace}.homelab = {
-              headless = false;
-              settings.flatpak.enable = true;
-            };
-            
-            networking.hostName = "nixos-dev"; 
-            system.stateVersion = stateVersion;
-          
-            # Boot settings...
-            # Use the systemd-boot EFI boot loader.
-            boot.loader.systemd-boot.enable = true;
-            boot.loader.efi.canTouchEfiVariables = true;
-
-            environment.systemPackages = [ homelab-machines.packages.${system-x86_64-linux}.admin-scripts ];
-          };
+        ({ config, ... }: {
+          config.system.stateVersion = stateVersion;
+          config.environment.systemPackages = [ 
+            homelab-machines.packages.${system-x86_64-linux}.admin-scripts 
+          ];
         })
 
-        # NixOS settings
-        ./settings
+        ./default.nix
+        #./hosts/dell-5810.nix
 
-        # System settings
-        homelab-machines.nixosModules.dell-5810Config
-
-        # Network Settings
-        ./networks/wired.nix
+        # Inline module to streamline config
         
-        # Services
-        ./services/openssh/openssh-secure.nix
-        # ./services/nixos-distributed-builds/server.nix
         
-        # Desktops/apps
-        ./desktops/cinnamon.nix
-
-        # Users
-        ./users
-         home-manager.nixosModules.home-manager {
-          home-manager.useUserPackages = true;
-          home-manager.useGlobalPkgs = true;
-          home-manager.users.brian = import ./users/brian/brian-home-de.nix;
-          }
       ];
     };
   };

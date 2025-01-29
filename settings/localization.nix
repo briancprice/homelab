@@ -1,6 +1,9 @@
 { config, lib, namespace, ... }: with lib; 
 { 
-  options.${namespace}.homelab.settings.localization.enable = mkEnableOption "localization";
+  options.${namespace}.homelab.settings.localization.enable = mkEnableOption {
+    description = "Adds default localization settings.";
+    default = true;
+  };
 
   config = mkIf config.${namespace}.homelab.settings.localization.enable {
     # Set your time zone.

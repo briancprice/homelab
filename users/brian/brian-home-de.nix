@@ -1,11 +1,11 @@
 # brian-de.nix
 # Brian's home-manager settings for machines with a desktop environment
 { config, pkgs, ... }:
-{
-
+{ 
   imports = [
     ./brian-home.nix
   ];
+  
   # Setup my wallpaper
   # TODO: Disable if not gnome
   home.file.wallpaper = {
