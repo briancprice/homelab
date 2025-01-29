@@ -4,7 +4,7 @@
 # TODO: Add the flatpak declarative management support.
 { config, pkgs, lib, namespace, ... }:
 let
-  cfg = config.${namespace}.homelab.settings.flatpak;
+  cfg = config.${namespace}.homelab;
   in
 with lib; {
   options.${namespace}.homelab.settings.flatpak = {
@@ -15,7 +15,7 @@ with lib; {
   };
   
 
-  config = mkIf cfg.enable {
+  config = mkIf cfg.settings.flatpak.enable {
     # Enable flatpak
     services.flatpak.enable = true;
 

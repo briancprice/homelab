@@ -1,3 +1,5 @@
+# settings/networking.nix
+# TODO: Determine best way to disable network-manager if needed.
 { config, lib, namespace, ... }:
 let
   cfg = config.${namespace}.homelab.settings.networking;
@@ -70,7 +72,7 @@ with lib; {
 
       # Static Network on primary nic
       useDHCP = false;
-      networkmanager.enable = mkDefault false;
+      # networkmanager.enable = mkDefault false;
       enableIPv6 = mkIf cfg.disableIPV6 false;
     
     } else if cfg.defaultNetworkingConfig == "static-bridge" then
@@ -80,7 +82,7 @@ with lib; {
         "The primaryNetworkBridge must be set.";
     {
       # Static Network on primary bridge, usually br0
-      networkmanager.enable = mkDefault false;
+      # networkmanager.enable = mkDefault false;
       useDHCP = mkForce false;
       enableIPv6 = mkIf cfg.disableIPV6 false;
 

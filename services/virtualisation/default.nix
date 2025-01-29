@@ -10,7 +10,7 @@ with lib; {
     };
 
     enableVirtualMachineManager = mkEnableOption {
-      default = !config.${namespace}.homelab.headless;
+      default = false;
       description = "Enable Virtual Machine Manager UI";
     };
   };

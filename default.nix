@@ -32,7 +32,7 @@ with lib; {
 
   imports = [
     ./settings
-    #./services
+    ./services
     ./desktops
     ./users
   ];

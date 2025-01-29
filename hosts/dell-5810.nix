@@ -12,7 +12,6 @@ in
       config.${namespace}.homelab = {
         machines.dell-5810 = {
           virtualisation.enable = true;
-          
         };
 
         machines-custom.dell-5810 = {
@@ -34,16 +33,19 @@ in
           disableIPV6 = true;
         };
 
-         services = { 
-          openssh = {
-            enable = true;
-            mode = "secure";
-            opensshUserName = "brian";
-          };
-          virtualisation = {
-            enable = true;
-            enableVirtualMachineManager = true;
-          };
+        settings.flatpak = {
+          enable = true;
+        };
+
+        services.openssh = {
+          enable = true;
+          mode = "secure";
+          opensshUserName = "brian";
+        };
+
+        services.virtualisation = {
+          enable = true;
+          enableVirtualMachineManager = true;
         };
 
         desktops.cinnamon.enable = true;

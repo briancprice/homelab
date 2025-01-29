@@ -19,7 +19,7 @@ with lib; {
     };
 
     authorizedKeys = mkOption {
-      type = listOf types.str;
+      type = types.listOf types.str;
       default = [ 
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKQM3PinzEcWHWb7JZ+5iJMttHhlbIizZ4T9bcXvCD3f"
         ];
@@ -32,10 +32,10 @@ with lib; {
 
   };
 
-  config = mkIf cfg.openssh.enable {
+  config = mkIf cfg.enable {
     services.openssh.enable = true;
     services.openssh.settings.PermitRootLogin = if cfg.mode == "permissive" then "yes" else "prohibit-password";
     services.openssh.settings.PasswordAuthentication = if cfg.mode == "permissive" then true else false;
-    users.users.${opensshUserName}.openssh.authorizedKeys.keys = mkIf elem cfg.authorizedKeys cfg.authorizedKeys;
+    users.users.${cfg.opensshUserName}.openssh.authorizedKeys.keys = mkIf (count cfg.authorizedKeys != 0) cfg.authorizedKeys;
   };
 }

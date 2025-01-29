@@ -62,7 +62,7 @@
         })
 
         ./default.nix
-        #./hosts/dell-5810.nix
+        ./hosts/dell-5810.nix
 
         # Inline module to streamline config
         
